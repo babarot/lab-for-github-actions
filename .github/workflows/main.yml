@@ -10,8 +10,9 @@ jobs:
         uses: futuratrepadeira/changed-files
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+        id: debug
       - name: 'Echo'
         run: |
-          echo ${{ outputs.files_created }}
-          echo ${{ outputs.files_updated }}
-          echo ${{ outputs.files_deleted }}
+          echo ${{ steps.changed_files.outputs.files_created }}
+          echo ${{ steps.changed_files.outputs.files_updated }}
+          echo ${{ steps.changed_files.outputs.files_deleted }}
