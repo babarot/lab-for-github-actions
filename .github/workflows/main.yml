@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Get changed files'
-        uses: b4b4r07/changed-files@master
+        uses: futuratrepadeira/changed-files@master
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-        id: debug
+        id: changed_files
       - name: 'Echo'
         run: |
           echo ${{ steps.changed_files.outputs.files_created }}
