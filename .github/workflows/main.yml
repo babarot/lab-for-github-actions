@@ -1,0 +1,17 @@
+name: CI
+on:
+  - push
+jobs:
+  test:
+    name: 'Test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Get changed files'
+        uses: futuratrepadeira/changed-files
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Echo'
+        run: |
+          echo ${{ outputs.files_created }}
+          echo ${{ outputs.files_updated }}
+          echo ${{ outputs.files_deleted }}
