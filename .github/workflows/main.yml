@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Get changed files'
-        uses: futuratrepadeira/changed-files@master
+        uses: b4b4r07/changed-files@master
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
         id: debug
