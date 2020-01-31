@@ -1,3 +1,29 @@
+# name: CI
+# on:
+#   - push
+# jobs:
+#   test:
+#     name: 'Test'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v1
+#         with:
+#           fetch-depth: 1
+#       - run: npm install
+#       - run: npm run build
+#       - name: 'Get changed files'
+#         uses: futuratrepadeira/changed-files@master
+#         with:
+#           repo-token: ${{ secrets.GITHUB_TOKEN }}
+#         id: changed_files
+#       - name: 'Echo'
+#         run: |
+#           echo ${{ steps.changed_files.outputs.files_created }}
+#           echo ${{ steps.changed_files.outputs.files_updated }}
+
+name: test
+on: [push]
+
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
@@ -10,4 +36,4 @@ jobs:
         who-to-greet: 'Mona the Octocat'
     # Use the output from the `hello` step
     - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"           echo ${{ steps.changed_files.outputs.files_deleted }}
+      run: echo "The time was ${{ steps.hello.outputs.time }}"
