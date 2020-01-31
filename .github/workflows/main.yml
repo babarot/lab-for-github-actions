@@ -30,8 +30,8 @@ jobs:
     name: Run opa
     steps:
     - name: Run with opa test
-      id: hello
-      uses: b4b4r07/actions-opa-test@v0.1.10
+      id: hell
+      uses: b4b4r07/actions-opa-test@v0.1.11
       with:
         src: 'example.rego'
         src_test: 'example_test.rego'
