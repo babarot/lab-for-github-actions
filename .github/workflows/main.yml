@@ -31,7 +31,7 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: b4b4r07/actions-opa-test
+      uses: github.com/b4b4r07/actions-opa-test
       with:
         who-to-greet: 'Mona the Octocat'
     # Use the output from the `hello` step
