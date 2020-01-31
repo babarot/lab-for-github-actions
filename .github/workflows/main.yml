@@ -13,8 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Run with opa test
-      uses: b4b4r07/actions-opa-test@master
+      uses: b4b4r07/action-opa@master
       with:
         path: .
         coverage: 90%
-        # files: example.rego
