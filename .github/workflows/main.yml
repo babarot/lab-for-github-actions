@@ -31,10 +31,11 @@ jobs:
     steps:
     - name: Run with opa test
       id: hello
-      uses: b4b4r07/actions-opa-test@v0.1.9
+      uses: b4b4r07/actions-opa-test@v0.1.10
       with:
         src: 'example.rego'
         src_test: 'example_test.rego'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+
+
+
