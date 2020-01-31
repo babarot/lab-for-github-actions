@@ -25,15 +25,16 @@ name: test
 on: [push]
 
 jobs:
-  hello_world_job:
+  opa_test:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Run opa
     steps:
-    - name: Hello world action step
+    - name: Run with opa test
       id: hello
-      uses: b4b4r07/actions-opa-test@v0.1.0
+      uses: b4b4r07/actions-opa-test@v0.1.2
       with:
-        who-to-greet: 'Mona the Octocat'
+        src: 'example.rego'
+        src_test: 'example_test.rego'
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
