@@ -11,7 +11,7 @@ jobs:
     - name: Get changed files
       uses: lots0logs/gh-action-get-changed-files@2.0.5
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.token }}
       id: files
     - name: Run with opa test
       uses: b4b4r07/actions-opa-test@master
