@@ -39,4 +39,4 @@ jobs:
       with:
         path: .
         coverage: 90%
-        files: steps.changed.outputs.added
+        files: ${{steps.changed.outputs.added}}
