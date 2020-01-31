@@ -33,11 +33,6 @@ jobs:
       uses: actions/checkout@v1
     - name: Run with opa test
       id: hell
-      uses: b4b4r07/actions-opa-test@v0.1.13
+      uses: b4b4r07/actions-opa-test@v0.1.14
       with:
-        src: 'example.rego'
-        src_test: 'example_test.rego'
-
-
-
-
+        path: .
