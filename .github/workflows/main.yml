@@ -13,9 +13,16 @@ jobs:
       with:
         token: ${{ secrets.token }}
       id: files
+    - name: List JSON file
+      run: |
+       cat ${HOME}/files.json
+       cat ${HOME}/files_modified.json
+       cat ${HOME}/files_added.json
+       cat ${HOME}/files_deleted.json
     - name: Run with opa test
       uses: b4b4r07/actions-opa-test@master
       # if: steps.files.outputs.modified
       with:
         path: .
         coverage: 90%
+        # files: ${{ steps.files.outputs.modified }}
