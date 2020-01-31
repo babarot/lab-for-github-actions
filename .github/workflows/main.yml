@@ -31,9 +31,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+    - name: Get changed files
+      uses: lots0logs/gh-action-get-changed-files@2.0.5
+      id: changed
     - name: Run with opa test
-      id: hell
-      uses: b4b4r07/actions-opa-test@v0.1.18
+      uses: b4b4r07/actions-opa-test@master
       with:
         path: .
         coverage: 90%
+        files: steps.changed.outputs.added
