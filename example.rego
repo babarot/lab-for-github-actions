@@ -11,5 +11,3 @@ allow {
     input.method == "GET"
     profile_id == input.user_id
 }
-
-# modified
