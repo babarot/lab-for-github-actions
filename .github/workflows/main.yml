@@ -27,3 +27,20 @@ jobs:
         path: .
         coverage: 90%
         files: ${{ steps.objects.outputs.changed }}
+
+  job2:
+    runs-on: ubuntu-latest
+    name: Get changed objects
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Get changed objects
+      uses: b4b4r07/action-changed-objects@master
+      with:
+        added: 'true'
+        deleted: 'false'
+        modified: 'true'
+      id: objects
+    - name: Show the previous result
+      run: |
+        echo ${{ steps.objects.output.changed }}
