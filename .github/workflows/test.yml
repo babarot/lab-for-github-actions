@@ -3,7 +3,7 @@ name: List changed objects
 on:
   push:
     branches:
-      - 'master'
+      - '*'
 
 jobs:
   job1:
