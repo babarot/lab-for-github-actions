@@ -3,7 +3,7 @@ name: Run opa test
 on:
   push:
     branches:
-      - master
+      - '!master'
 
 jobs:
   job1:
