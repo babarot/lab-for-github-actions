@@ -20,13 +20,10 @@ jobs:
         deleted: 'false'
         modified: 'true'
       id: objects
-    - name: Test
-      run: |
-        echo ${{ steps.objects.outputs.objects }}
     - name: Run opa test
       uses: b4b4r07/action-opa@master
-      if: steps.objects.outputs.objects
+      if: steps.objects.outputs.changed
       with:
         path: .
         coverage: 90%
-        files: ${{ steps.objects.outputs.objects }}
+        files: ${{ steps.objects.outputs.changed }}
