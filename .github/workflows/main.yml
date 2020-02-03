@@ -12,8 +12,17 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-    - name: Run with opa test
+    - name: Get changed objects
+      uses: b4b4r07/action-changed-objects@master
+      with:
+        added: 'true'
+        deleted: 'false'
+        modified: 'true'
+      id: objects
+    - name: Run opa test
       uses: b4b4r07/action-opa@master
+      if: steps.objects.outputs.objects
       with:
         path: .
         coverage: 90%
+        files: ${{ steps.objects.outputs.objects }}
