@@ -1,46 +1,44 @@
 labels:
-  - color: d73a4a
-    description: Something isn't working
-    name: bug
-  - color: 0075ca
-    description: Improvements or additions to documentation
-    name: documentation
-  - color: cfd3d7
-    description: This issue or pull request already exists
-    name: duplicate
-  - color: a2eeef
-    description: New feature or request
-    name: enhancement
-  - color: 7057ff
-    description: Good for newcomers
-    name: good first issue
-  - color: "008672"
-    description: Extra attention is needed
-    name: help wanted
-  - color: e4e669
-    description: This doesn't seem right
-    name: invalid
-  - color: d876e3
-    description: Further information is requested
-    name: question
-  - color: ffffff
-    description: This will not be worked on
-    name: wontfix
-  - color: cccccc
-    description: Test label
-    name: test
-
+- name: bug
+  description: Something isn't working
+  color: d73a4a
+- name: documentation
+  description: Improvements or additions to documentation
+  color: 0075ca
+- name: duplicate
+  description: This issue or pull request already exists
+  color: cfd3d7
+- name: enhancement
+  description: New feature or request
+  color: a2eeef
+- name: good first issue
+  description: Good for newcomers
+  color: 7057ff
+- name: help wanted
+  description: Extra attention is needed
+  color: "008672"
+- name: invalid
+  description: This doesn't seem right
+  color: e4e669
+- name: question
+  description: Further information is requested
+  color: d876e3
+- name: test
+  description: Test label
+  color: cccccc
+- name: wontfix
+  description: This will not be worked on
+  color: ffffff
 repos:
-  - name: b4b4r07/lab-for-github-actions
-    labels:
-      - bug
-      - documentation
-      - duplicate
-      - enhancement
-      - good first issue
-      - help wanted
-      - invalid
-      - question
-      - wontfix
-      - documentation
-      # - test
+- name: b4b4r07/lab-for-github-actions
+  labels:
+  - bug
+  - documentation
+  - duplicate
+  - enhancement
+  - good first issue
+  - help wanted
+  - invalid
+  - question
+  - wontfix
+  - documentation
