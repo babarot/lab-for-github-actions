@@ -24,8 +24,11 @@ labels:
   description: Further information is requested
   color: d876e3
 - name: test
-  description: Test label
-  color: cccccc
+  description: ""
+  color: d4c5f9
+- name: test-2
+  description: ""
+  color: b60205
 - name: wontfix
   description: This will not be worked on
   color: ffffff
