@@ -43,4 +43,4 @@ repos:
       - question
       - wontfix
       - documentation
-      - test
+      # - test
