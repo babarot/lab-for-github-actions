@@ -23,9 +23,6 @@ labels:
 - name: question
   description: Further information is requested
   color: d876e3
-- name: test
-  description: Test label
-  color: cccccc
 - name: wontfix
   description: This will not be worked on
   color: ffffff
