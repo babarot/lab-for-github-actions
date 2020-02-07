@@ -26,9 +26,9 @@ labels:
 - name: test
   description: "test"
   color: d4c5f9
-- name: test-2
-  description: "test-2"
-  color: b60205
+- name: hoge
+  description: "hoge"
+  color: d4c5f9
 - name: wontfix
   description: This will not be worked on
   color: ffffff
