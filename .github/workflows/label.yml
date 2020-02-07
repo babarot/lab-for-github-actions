@@ -1,4 +1,4 @@
-name: label
+name: Sync labels
 
 on:
   push:
@@ -13,7 +13,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@1.0.0
+      - name: Show the diff of existing labels
+        uses: b4b4r07/github-labeler@master
+        with:
+          diff: 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: diff
+      - name: Import between existing labels
+        uses: b4b4r07/github-labeler@master
+        with:
+          import: 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.diff.outputs.diff == 'yes'
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Import existing labels"
+          title: "Import existing labels"
+          body: |
+            ## WHAT
+            This pull request was created by [create-pull-request](https://github.com/peter-evans/create-pull-request).
+            ## WHY
+            Current labels.yaml and existing labels don't match.
+          branch: import-labels
+          branch-suffix: timestamp
+        if: steps.diff.outputs.diff == 'yes'
       - name: Sync labels
         uses: b4b4r07/github-labeler@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.diff.outputs.diff == 'no'
