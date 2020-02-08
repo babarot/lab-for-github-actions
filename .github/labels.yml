@@ -29,9 +29,6 @@ labels:
 - name: test-label
   description: ""
   color: bfdadc
-- name: test-label-test
-  description: ""
-  color: bfdadc
 - name: wontfix
   description: This will not be worked on
   color: ffffff
@@ -48,5 +45,4 @@ repos:
   - invalid
   - question
   - test-label
-  - test-label-test
   - wontfix
