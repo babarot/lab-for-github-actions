@@ -26,6 +26,9 @@ labels:
 - name: question
   description: Further information is requested
   color: d876e3
+- name: test-label
+  description: ""
+  color: bfdadc
 - name: wontfix
   description: This will not be worked on
   color: ffffff
@@ -41,4 +44,5 @@ repos:
   - help wanted
   - invalid
   - question
+  - test-label
   - wontfix
