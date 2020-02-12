@@ -26,3 +26,9 @@ jobs:
         notify: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      id: opa
+    - name: Notify
+      uses: b4b4r07/action-github-comment@master
+      if: steps.opa.outputs.result
+      with:
+        body: ${{ steps.opa.outputs.result }}
