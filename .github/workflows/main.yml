@@ -27,4 +27,6 @@ jobs:
         path: .
         coverage: 90%
         files: ${{ steps.objects.outputs.changed }}
-        notify: true
+        notify: ${{ github.event.pull_request.comments_url }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
