@@ -23,14 +23,16 @@ jobs:
         path: .
         coverage: 90%
         files: ${{ steps.objects.outputs.changed }}
-        notify: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       id: opa
-    - name: Notify
+    - name: Notify result
       uses: b4b4r07/action-github-comment@master
       if: steps.opa.outputs.result
       with:
-        body: ${{ steps.opa.outputs.result }}
+        body: |
+          ## opa test result
+          ```
+          ${{ steps.opa.outputs.result }}
+          ```
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        LOG: trace
