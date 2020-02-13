@@ -14,3 +14,16 @@ jobs:
           dryrun: 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: labeler
+      - name: Post github-labeler command result to GitHub comment
+        uses: b4b4r07/action-github-comment@master
+        if: steps.labeler.outputs.result
+        with:
+          body: |
+            ## github-labeler result
+            ```
+            ${{ steps.labeler.outputs.result }}
+            ```
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOG: trace
