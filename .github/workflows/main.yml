@@ -4,6 +4,7 @@ on: [pull_request]
 
 jobs:
   opa:
+    name: opa test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -15,14 +16,14 @@ jobs:
         deleted: 'false'
         modified: 'true'
       id: objects
-    - name: Run opa test
+    - name: Run opa test against changed files
       uses: b4b4r07/action-opa@master
       if: steps.objects.outputs.changed
       with:
         coverage: 90%
         files: ${{ steps.objects.outputs.changed }}
       id: opa
-    - name: Notify result
+    - name: Post opa command result to GitHub comment
       uses: b4b4r07/action-github-comment@master
       if: steps.opa.outputs.result
       with:
