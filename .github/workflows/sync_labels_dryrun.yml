@@ -1,14 +1,15 @@
-name: Sync labels (Dry run)
+name: Sync labels
 
 on: [pull_request]
 
 jobs:
   sync:
+    name: Dry run
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Sync labels (Dry run)
+      - name: Sync labels with dryrun option
         uses: b4b4r07/github-labeler@master
         with:
           dryrun: 'true'
