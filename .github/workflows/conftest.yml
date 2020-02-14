@@ -1,0 +1,48 @@
+name: conftest
+
+on: [pull_request]
+
+jobs:
+  conftest:
+    name: conftest test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Get changed objects
+      uses: b4b4r07/action-changed-objects@master
+      with:
+        added: 'true'
+        deleted: 'false'
+        modified: 'true'
+      id: objects
+    - name: Filter the changed objects
+      run: |
+        configs=()
+        # TODO
+        for file in ${{ steps.objects.outputs.changed }}
+        do
+          if [[ ${file} == *.yaml ]]; then
+            configs+=("${file}")
+          fi
+        done
+        echo "::set-output name=configs::${configs[@]//$'\n'/'%0A'}"
+      id: configs
+    - name: Run conftest test against changed files
+      uses: b4b4r07/action-conftest@master
+      if: steps.configs.outputs.configs
+      with:
+        files: ${{ steps.configs.outputs.configs }}
+      id: conftest
+    - name: Post conftest command result to GitHub comment
+      uses: b4b4r07/action-github-comment@master
+      if: steps.conftest.outputs.result
+      with:
+        body: |
+          ## conftest test result
+          ```
+          ${{ steps.conftest.outputs.result }}
+          ```
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        LOG: trace
