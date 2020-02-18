@@ -16,23 +16,12 @@ jobs:
         deleted: 'false'
         modified: 'true'
       id: objects
-    - name: Filter the changed objects
-      run: |
-        configs=()
-        # TODO
-        for file in ${{ steps.objects.outputs.changed }}
-        do
-          if [[ ${file} == *.yaml ]]; then
-            configs+=("${file}")
-          fi
-        done
-        echo "::set-output name=configs::${configs[@]//$'\n'/'%0A'}"
-      id: configs
     - name: Run conftest test against changed files
       uses: b4b4r07/action-conftest@master
-      if: steps.configs.outputs.configs
+      if: steps.objects.outputs.changed
       with:
-        files: ${{ steps.configs.outputs.configs }}
+        files: ${{ steps.objects.outputs.changed }}
+        match: '*.yaml'
       id: conftest
     - name: Post conftest command result to GitHub comment
       uses: b4b4r07/action-github-comment@master
