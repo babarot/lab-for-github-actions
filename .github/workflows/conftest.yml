@@ -21,7 +21,7 @@ jobs:
       if: steps.objects.outputs.changed
       with:
         files: ${{ steps.objects.outputs.changed }}
-        match: '*.yaml'
+        matches: '*.yaml'
       id: conftest
     - name: Post conftest command result to GitHub comment
       uses: b4b4r07/action-github-comment@master
