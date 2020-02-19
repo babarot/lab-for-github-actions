@@ -25,7 +25,7 @@ jobs:
       id: conftest
     - name: Post conftest command result to GitHub comment
       uses: b4b4r07/action-github-comment@master
-      if: steps.conftest.outputs.result
+      if: always() && steps.conftest.outputs.result
       with:
         body: |
           ## conftest test result
