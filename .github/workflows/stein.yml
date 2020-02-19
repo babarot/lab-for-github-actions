@@ -26,7 +26,7 @@ jobs:
       id: stein
     - name: Post stein command result to GitHub comment
       uses: b4b4r07/action-github-comment@master
-      if: steps.stein.outputs.result
+      if: always() && steps.stein.outputs.result
       with:
         body: |
           ## stein apply result
