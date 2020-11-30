@@ -5,8 +5,8 @@ jobs:
   yamllint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Run yamllint
-      uses: ibiqlik/action-yamllint@v3
-      with:
-        file_or_dir: .
+      - uses: actions/checkout@v1
+      - name: Run yamllint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .
