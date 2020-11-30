@@ -6,16 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      # - name: Get changed objects
-      #   uses: b4b4r07/action-changed-objects@master
-      #   with:
-      #     added: 'true'
-      #     deleted: 'false'
-      #     modified: 'true'
-      #   id: objects
-      # - name: Show the previous result
-      #   run: |
-      #     echo ${{ steps.objects.outputs.changed }}
+      - name: Get changed objects
+        uses: b4b4r07/action-changed-objects@master
+        with:
+          added: 'true'
+          deleted: 'false'
+          modified: 'true'
+        id: objects
+      - name: Show the previous result
+        run: |
+          echo ${{ steps.objects.outputs.changed }}
       - name: Run yamllint
         uses: ibiqlik/action-yamllint@v3
         with:
