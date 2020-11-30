@@ -3,4 +3,4 @@ kind: CronJob
 metadata:
   name: test
 spec:
-  schedule: "0 * * * *" 毎時0分
+  schedule: "0 * * * *" 毎時0分 # コメント忘れ
