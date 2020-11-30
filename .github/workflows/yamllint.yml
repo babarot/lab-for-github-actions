@@ -19,4 +19,4 @@ jobs:
       - name: Run yamllint
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: .
+          file_or_dir: ${{ steps.objects.outputs.changed }}
