@@ -1,0 +1,9 @@
+name: Test
+on:
+- push # invalid
+foo:
+  bar:
+    buz: test
+    steps:
+      - one: one
+      - two: two
