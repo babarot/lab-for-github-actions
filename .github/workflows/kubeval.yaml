@@ -1,4 +1,11 @@
-on: push
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "manifests/**"
+      - ".github/workflows/kubeval.yml"
+  pull_request:
 name: Validate Kubernetes Manifests
 jobs:
   kubeval:
