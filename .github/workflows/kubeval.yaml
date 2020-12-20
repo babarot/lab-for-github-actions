@@ -14,6 +14,6 @@ jobs:
       - uses: actions/checkout@master
       - name: Run kubeval
         uses: instrumenta/kubeval-action@master
-        with:
-          files: manifests
-          version: "1.14"
+        # with:
+        #   files: manifests
+        #   version: "1.14"
