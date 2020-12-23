@@ -19,4 +19,4 @@ jobs:
     - uses: actions/checkout@v1
     - name: 'Run reindex script'
       run: |
-        SERVER_ENVIRONMENT=${{ github.event.inputs.environment }} cat tool/elasticsearch/reindex ${{ github.event.inputs.target }}
+        SERVER_ENVIRONMENT=${{ github.event.inputs.environment }} bash tool/elasticsearch/reindex.bash ${{ github.event.inputs.target }}
