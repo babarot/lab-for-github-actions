@@ -1,14 +1,11 @@
 on:
-  repository_dispatch:
-    types:
-      - test
+  workflow_dispatch:
 
 jobs:
   build:
-    name: build debian package from released binaries
+    name: Run event dispatch
     runs-on: ubuntu-latest
     steps:
-    - run: "echo ${{ github.event_name }} event triggered this step."
     - uses: actions/checkout@v1
-    - name: echo
+    - name: echo message
       run: echo Run
