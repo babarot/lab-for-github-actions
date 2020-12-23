@@ -1,3 +1,4 @@
+name: Event Dispatch
 on:
   workflow_dispatch:
 
