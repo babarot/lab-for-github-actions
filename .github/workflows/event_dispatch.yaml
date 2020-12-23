@@ -1,12 +1,22 @@
-name: Event Dispatch
+name: 'Make elasticsearch reindex'
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'SERVER_ENVIRONMENT'
+        required: true
+        default: 'development'
+      target:
+        description: 'What to run reindex'
+        required: true
+        default: 'stocks' # it's temporary
 
 jobs:
   build:
-    name: Run event dispatch
+    name: 'Reindex'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: echo message
-      run: echo Run
+    - name: 'Run reindex script'
+      run: |
+        SERVER_ENVIRONMENT=${{ github.event.inputs.environment }} cat tool/elasticsearch/reindex ${{ github.event.inputs.target }}
