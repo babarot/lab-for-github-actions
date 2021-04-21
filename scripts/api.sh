@@ -25,7 +25,7 @@ main() {
 
   # https://docs.github.com/ja/developers/webhooks-and-events/github-event-types#pullrequestevent
   case "${action}" in
-    "opened" | "reopened")
+    "opened" | "reopened" | "synchronize")
       insert_record | update_db
       ;;
 
