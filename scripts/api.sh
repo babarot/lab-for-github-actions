@@ -6,7 +6,7 @@ GIST_ID=${GIST_ID:?GIST_ID is required}
 
 ok_to_record() {
   local -i count
-  count=$(get_pull_files | jq -r '.[] | select(.filename == endwith("module.tf")) | select(.status == "added") | .additions')
+  count=$(get_pull_files | jq -r '.[] | select(.filename | endswith("module.tf")) | select(.status == "added") | .additions')
 
   if [[ ${count:-0} == 0 ]]; then
     return 1
@@ -25,7 +25,7 @@ main() {
 
   # https://docs.github.com/ja/developers/webhooks-and-events/github-event-types#pullrequestevent
   case "${action}" in
-    "opened" | "reopened")
+    "opened" | "reopened" | "synchronize")
       insert_record | update_db
       ;;
 
