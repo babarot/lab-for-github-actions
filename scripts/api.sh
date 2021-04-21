@@ -13,7 +13,7 @@ ok_to_record() {
   {
     local line
     echo "[DEBUG] ======== ok_to_record ========"
-    echo "${json}" | while read line; do echo "[DEBUG] ${line}"; done
+    echo "${json}" | while IFS=$'\n' read line; do echo "[DEBUG] ${line}"; done
     echo "[DEBUG] =============================="
   } >&2
 
