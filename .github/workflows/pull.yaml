@@ -8,6 +8,7 @@ jobs:
     name: List files
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Dump GitHub context
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
