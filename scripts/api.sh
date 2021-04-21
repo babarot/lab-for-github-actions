@@ -6,7 +6,15 @@ GIST_ID=${GIST_ID:?GIST_ID is required}
 
 ok_to_record() {
   local -i count
-  count=$(get_pull_files | jq -r '.[] | select(.filename | endswith("module.tf")) | select(.status == "added") | .additions')
+  local json
+
+  json="$(get_pull_files | jq -r '.[] | select(.filename | endswith("module.tf")) | select(.status == "added")')"
+
+  echo "[DEBUG] ======== ok_to_record ========"
+  echo "[DEBUG] ${json}" >&2
+  echo "[DEBUG] =============================="
+
+  count=$(echo "${json}" | jq -r .additions)
 
   if [[ ${count:-0} == 0 ]]; then
     return 1
@@ -31,10 +39,10 @@ main() {
       ;;
 
     "closed")
-      if [[ ${PULL_REQUEST_MERGED} == false ]]; then
-        echo "[DEBUG] github.event.pull_request.merged is false, skipped to record"
-        return
-      fi
+      # if [[ ${PULL_REQUEST_MERGED} == false ]]; then
+      #   echo "[DEBUG] github.event.pull_request.merged is false, skipped to record"
+      #   return
+      # fi
       echo "[DEBUG] Run update_record and update_db..."
       local closed_at
       closed_at=$(get_pull | jq -r '.closed_at')
