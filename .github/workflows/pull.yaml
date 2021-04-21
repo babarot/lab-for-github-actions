@@ -1,8 +1,4 @@
 # change this to the event type you want to get the data for
-# on:
-#   pull_request:
-#     # types: [opened, closed, reopened]
-#     #
 on:
   pull_request:
     branches:
@@ -10,12 +6,12 @@ on:
     types: [opened, closed, reopened]
 
 jobs:
-  file:
-    name: List files
+  job1:
+    name: record
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Dump GitHub context
+    - name: Record pull request information
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         GITHUB_REPO: ${{ github.repository }}
