@@ -10,9 +10,12 @@ ok_to_record() {
 
   json="$(get_pull_files | jq -r '.[] | select(.filename | endswith("module.tf")) | select(.status == "added")')"
 
-  echo "[DEBUG] ======== ok_to_record ========"
-  echo "[DEBUG] ${json}" >&2
-  echo "[DEBUG] =============================="
+  {
+    local line
+    echo "[DEBUG] ======== ok_to_record ========"
+    echo "${json}" | while read line; do echo "[DEBUG] ${line}"; done
+    echo "[DEBUG] =============================="
+  } >&2
 
   count=$(echo "${json}" | jq -r .additions)
 
@@ -44,9 +47,9 @@ main() {
       #   return
       # fi
       echo "[DEBUG] Run update_record and update_db..."
-      local closed_at
-      closed_at=$(get_pull | jq -r '.closed_at')
-      update_record "closed_at" "${closed_at}" | update_db
+      local merged_at
+      merged_at=$(get_pull | jq -r '.merged_at')
+      update_record "merged_at" "${merged_at}" | update_db
       ;;
 
   esac
@@ -75,14 +78,14 @@ get_record() {
 }
 
 insert_record() {
-  local created_at closed_at
+  local created_at merged_at
   created_at=$(get_pull | jq -r '.created_at')
-  closed_at=$(get_pull | jq -r '.closed_at')
+  merged_at=$(get_pull | jq -r '.merged_at')
   get_record | jq '.pull_requests += [
   {
     "number": '${PULL_REQUEST_NUMBER}',
     "created_at": "'${created_at}'",
-    "closed_at": "'${closed_at}'"
+    "merged_at": "'${merged_at}'"
   }]'
 }
 
