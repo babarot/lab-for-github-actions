@@ -4,7 +4,7 @@ on:
     types: [opened, closed, reopened]
 
 jobs:
-  printJob:    
+  printJob:
     name: Print event
     runs-on: ubuntu-latest
     steps:
@@ -12,4 +12,6 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
-        echo "$GITHUB_CONTEXT"
+        # echo "$GITHUB_CONTEXT"
+        echo ${{ github.files }}
+        echo ${{ toJson(github) }}
