@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Dump GitHub context
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         GITHUB_REPO: ${{ github.repository }}
         PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
         EVENT_ACTION: ${{ github.event.action }}
