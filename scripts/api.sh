@@ -6,7 +6,7 @@ GIST_ID=${GIST_ID:?GIST_ID is required}
 
 ok_to_record() {
   local -i count
-  count=$(get_pull_files | jq -r '.[] | select(.filename == endswith("module.tf")) | select(.status == "added") | .additions')
+  count=$(get_pull_files | jq -r '.[] | select(.filename | endswith("module.tf")) | select(.status == "added") | .additions')
 
   if [[ ${count:-0} == 0 ]]; then
     return 1
