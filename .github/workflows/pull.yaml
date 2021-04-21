@@ -10,10 +10,10 @@ jobs:
     steps:
     - name: Dump GitHub context
       env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPO: ${{ github.repository }}
+        PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
+        EVENT_ACTION: ${{ github.event.action }}
+        GIST_ID: "4e0a7b5136bee6c0f86959c3723999e6"
       run: |
-        # echo "$GITHUB_CONTEXT"
-        # echo ${{ github.event.pull_request }}
-        # echo ${{ toJson(github) }}
-        url="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
-        curl -s -X GET -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" ${url} | jq '.[] | select(.filename == "a.sh") | select(.status == "added")'
+        bash script/api.sh
