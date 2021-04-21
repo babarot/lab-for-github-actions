@@ -17,4 +17,4 @@ jobs:
         EVENT_ACTION: ${{ github.event.action }}
         GIST_ID: "4e0a7b5136bee6c0f86959c3723999e6"
       run: |
-        bash script/api.sh
+        bash scripts/api.sh
