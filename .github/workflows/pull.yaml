@@ -1,7 +1,13 @@
 # change this to the event type you want to get the data for
+# on:
+#   pull_request:
+#     # types: [opened, closed, reopened]
+#     #
 on:
   pull_request:
-    # types: [opened, closed, reopened]
+    branches:
+      - master
+    types: [opened, closed, reopened]
 
 jobs:
   file:
@@ -16,5 +22,6 @@ jobs:
         PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
         EVENT_ACTION: ${{ github.event.action }}
         GIST_ID: "4e0a7b5136bee6c0f86959c3723999e6"
+        PULL_REQUEST_MERGED: ${{ github.event.pull_request.merged }}
       run: |
         bash scripts/api.sh

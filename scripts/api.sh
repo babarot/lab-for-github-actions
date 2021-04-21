@@ -26,10 +26,16 @@ main() {
   # https://docs.github.com/ja/developers/webhooks-and-events/github-event-types#pullrequestevent
   case "${action}" in
     "opened" | "reopened" | "synchronize")
+      echo "[DEBUG] Run insert_record and update_db..."
       insert_record | update_db
       ;;
 
     "closed")
+      if [[ ${PULL_REQUEST_MERGED} == false ]]; then
+        echo "[DEBUG] github.event.pull_request.merged is false, skipped to record"
+        return
+      fi
+      echo "[DEBUG] Run update_record and update_db..."
       local closed_at
       closed_at=$(get_pull | jq -r '.closed_at')
       update_record "closed_at" "${closed_at}" | update_db
